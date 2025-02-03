@@ -1,0 +1,21 @@
+name: checkout
+description: checkout
+
+inputs:
+  java-version:
+    required: true
+    description: Java version
+    default: "17"
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: ${{ inputs.java-version }}
